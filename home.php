@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -5,7 +6,8 @@ session_start();
 include("conn.php"); 
 
 
-$username=$_SESSION['name'];
+$username = $_SESSION['name'];
+
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +26,13 @@ $username=$_SESSION['name'];
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
        
     <!-- Favicon -->
-     <link rel="shortcut icon" href="Ressources\blog-removebg-preview.png" type="image/x-icon">
+        <link rel="shortcut icon" href="Ressources\blog-removebg-preview.png" type="image/x-icon">
      
       <!-- Font awesome -->
-     <script src="https://kit.fontawesome.com/f84ba90e3b.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/f84ba90e3b.js" crossorigin="anonymous"></script>
+
+     <!-- Style css -->
+        <link rel="stylesheet" href="css\style.css">
         
     </head>
     <body>
@@ -37,7 +42,7 @@ $username=$_SESSION['name'];
              <div class="row" id="head">
                  <div class="col">
                      <center>
-                          <a href="home.php"> <img src="img/logo.png" style="width: 25%;"/></a>
+                          <a href="home.php"> <img src="Ressources\blog-removebg-preview.png" style="width: 25%;"/></a>
                      </center>
                 </div>
             </div>
@@ -50,15 +55,15 @@ $username=$_SESSION['name'];
                     <div class="row">
                 
                         <div class="col">
-                        <h4 style="font-size : 18px"> Bienvenu <?php echo "$username" ?> ! Ravi de vous revoir dans vos blogs ..</h4>
+                        <h4 style="font-size : 18px"> Welcome Back <?php echo "$username" ?> ! , Nice to see you again in your Blogs <i class="far fa-smile-beam" ></i></h4>
                         </div>
                         <div class="col"> 
-                            <a href="logout.php" style="color : black; font-size: 16px; margin-left: 80%">Se déconneter</a>
+                            <a href="logout.php" style="color : black; font-size: 16px; margin-left: 80%">LogOut<i class="fas fa-sign-out-alt" style="color: #ffc107"></i></a>
                         </div>
                     </div>
                 
 
-            </div>
+        </div>
         <br> 
             <div class="row" id="profile">
                 
@@ -66,57 +71,59 @@ $username=$_SESSION['name'];
                       <?php	
 		      $username=$_SESSION['name'];
 
-		       $sql = "SELECT 	* FROM signup where name='$username'";
-                        $result = $conn->query($sql);
+		         $sql = "SELECT * FROM signup where name='$username'";
+                $result = $conn->query($sql);
 
-                         if ($result->num_rows > 0) {
+                    if ($result->num_rows > 0) {
                           // output data of each row
-                         while($row = $result->fetch_assoc()) {
-                                 $location= $row["image"];
-                        echo "<img id='img' src='$location'>";
+                        while($row = $result->fetch_assoc()) {
+                            $location= $row["image"];
+                            echo "<img id='img' src='$location'>";
                         }
-                       } else {
-                      echo "0 results";
-                     }
+                    } else {
+                        echo "0 results";
+                    }
                         $conn->close();
-                       ?>
-                    </div>
+                    ?>
+                </div>
                 
                 
                 
                 
-                 <div class="col" id="pro2">
+                <div class="col" id="pro2">
                     <div class="jumbotron">
-                    <?php
+                            <?php
 
-                 include("conn.php"); 
-                 $username=$_SESSION['name'];
-                 if(isset($_POST['submit'])){
-                    $name=$_FILES['myfile']['name'];
-                    $tmp_name=$_FILES['myfile']['tmp_name'];
-                    
-                if($name)
-                {
-                $location="image/$name";
-                move_uploaded_file($tmp_name,$location);	
-		
-                $query=mysqli_query($conn,"UPDATE signup SET image='$location' WHERE name='$username'");
-		header("Location:suc.php");
-                }
-                else 
-		die("Please select a file");
-                }
+                                include("conn.php"); 
+                                $username=$_SESSION['name'];
+                                if(isset($_POST['submit']))
+                                {
+                                    $name=$_FILES['myfile']['name'];
+                                    $tmp_name=$_FILES['myfile']['tmp_name'];
+                                    
+                                if ($name) 
+                                {
+                                    $location = "image/$name";
+                                    move_uploaded_file($tmp_name, $location);
 
-                echo "<br>";
-                echo "
+                                    $query=mysqli_query($conn,"UPDATE signup SET image='$location' WHERE name='$username'");
 
-                <form action='home.php' method='post' enctype='multipart/form-data'>
+                                    die("Uploaded with success <i class='far fa-smile-beam' ></i> <br><a href='home.php'>home</a>");
+                                }
+                                else 
+                                    die("Please select a file");
+                                }
+                        
+                                echo "<br>";
+                                echo "
 
-                <input type='file' name='myfile'>
-                <input type='submit' name='submit' value='Change Your Avatar'>
-                </form>
-                ";
-                ?>
+                                <form action='home.php' method='post' enctype='multipart/form-data'>
+
+                                <input type='file' name='myfile'>
+                                <input type='submit' name='submit' value='Change Your Avatar'>
+                                </form>
+                                ";
+                            ?>
                     </div>
                 </div>
                 
@@ -159,17 +166,15 @@ $username=$_SESSION['name'];
         <div id="body" class="row">
             <div class="col">
                 <?php	
-                    $sql = "SELECT* FROM posts ORDER BY id desc";
+                    $sql = "SELECT 	* FROM posts ORDER BY id desc";
                     $result = $conn -> query($sql);
 
                     if ($result->num_rows > 0) {
                         // output data of each row
                         while($row = $result->fetch_assoc()) {
 
-                            echo   "<b>"."Title:" .$row["title"]."</b>"."<br>". $row["post"]."<br>"."<i>Posted By--</i><br>"."<b>".$row["name"]." </b>"."<b>".$row["time"]."</b>";
-
-
-                                    echo"<hr>";
+                            echo   "<b>"."Title:" .$row["title"]."</b>"."<br>". $row["post"]."<br>"."<i>Posted By--</i>"."<b>".$row["name"]." </b> <br>"."<b>".$row["time"]."</b>";
+                            echo"<hr>";
                             echo "<br>";
                         }
                     } else {
@@ -256,3 +261,46 @@ $username=$_SESSION['name'];
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

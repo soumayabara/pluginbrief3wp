@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <!-- Favicon -->
-     <link rel="shortcut icon" href="img/X-icone.png" type="image/x-icon">
+    <title>My Blog</title>
 
     <!-- CSS Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"crossorigin="anonymous">
@@ -15,76 +13,83 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
         
+     <!-- Favicon -->
+     <link rel="shortcut icon" href="Ressources\blog-removebg-preview.png" type="image/x-icon">
         
+      <!-- Font awesome -->
+     <script src="https://kit.fontawesome.com/f84ba90e3b.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
-        
-        <!-- Connect with database -->
-            <?php 'conn.php'?>
+        <?php 'conn.php'?>
         
         <div class="row" id="head">
-            <div class="col">
-                <center>
-                    <a href="home.php"> <img src="img/logo.png" style="width: 40%;"/></a>
-                </center>
-            <div class="container">
+            
+                 <div class="col">
+                     <center>
+                         <a href="home.php"> <img src="Ressources\blog-removebg-preview.png" style="width: 30%;"/></a>
+                     </center>
+                </div>
+        </div>
+            <br>
+
+            <div id="info">
+                
+
+                <div class="container">
                     <div class="row">
                         <div class="col">
-
+                            
                              <div class="jumbotron">
-
+                                
                                 <center>
-                                <h2>S'identifier</h2>
+                                    <h2>login <i class="fas fa-sign-in-alt" style="color: #ffc107"></i></h2>
                                 </center>
                                 <br>
                                   <!-- Login -->
                                     <form action="login.php" method="post">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Nom d'utilisateur</label>
-                                            <input type="Username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+                                            <label for="exampleInputEmail1">Username</label>
+                                            <input type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
                                             <br>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Mot de passe</label>
+                                            <label for="exampleInputPassword1">Password</label>
                                             <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
                                         </div>
-                                        <button type="submit" class="btn btn-outline-danger">S'identifier</button>
+                                        <button type="submit" class="btn btn-outline-warning">login</button>
                                     </form>
                              </div>
-
+                           
                         </div>
-
-                
+                        
                         <br> <br>
                         <div class="col">
                             <div class="jumbotron">
                                 <center>
-                                <h2>S'inscrire</h2>
+                                <h2>Sign Up <i class="fas fa-user-plus" style="color: #ffc107"></i></h2>
                                 </center>
                                 <br>
                                 <!-- signup -->
 
                             <form action="signup.php" method="post">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nom d'utilisateur</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
-                                    <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre e-mail avec quelqu'u d'autre.</small>
+                                    <label for="exampleInputEmail1">Username</label>
+                                    <input type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Mot de passe</label>
+                                    <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
                                 </div>
-                                <button type="submit" class="btn btn-outline-danger">S'inscrire</button>
+                                <button type="submit" class="btn btn-outline-warning">Signup</button>
                             </form>
                         </div>
-
+                            
                     </div>
                 </div>
+                 
 
-
-
-            </div>
                 
             </div>
             
@@ -112,6 +117,6 @@
 
         </div>
     
-    
+    </div>
 </body>
 </html>
